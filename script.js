@@ -11,11 +11,11 @@ const images = [
 ];
 
 function downloadImage(imageObj) {
-	return new Promise = ((resolve, reject)=>{
+	return new Promise((resolve, reject)=>{
 	const img = new Image();
     img.src = imageObj.url;
     img.onload = () => resolve(img);
-    img.onerror = () => reject("Failed to load image: " + url);
+    img.onerror = () => reject("Failed to load image: " + imageObj.url);
 	});
 }
 
@@ -24,7 +24,7 @@ function downloadImages() {
     errorDiv.textContent = "";
     outputDiv.innerHTML = "";
 
-    const promises = images.map(url => downloadImage(url));
+    const promises = images.map(image => downloadImage(image));
 
     Promise.all(promises)
       .then(images => {
@@ -39,4 +39,4 @@ function downloadImages() {
       });
   }
 
-btn.addEventListener("click", downloadImages());
+btn.addEventListener("click", downloadImages);
